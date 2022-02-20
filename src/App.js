@@ -30,6 +30,11 @@ function App() {
   function addExpense(event){
     event.preventDefault()
     setExpenses(prev => ([...prev,currentExpense]))
+    clearCurrentExpense(event)
+  }
+
+  function clearCurrentExpense(event){
+    event.preventDefault()
     setCurrentExpense({
       description: "",
       amount: "",
@@ -39,9 +44,10 @@ function App() {
 
   function ListExpenses(){
     return(
-      expenses.map(function(expense){ 
+      expenses.map(function(expense,index){ 
         return (
-        <tr>
+        <tr key={index + 1}>
+          <td>{index + 1}</td>
           <td>{expense.description}</td>
           <td>{expense.amount}</td>
           <td>{expense.date}</td>
@@ -83,12 +89,13 @@ function App() {
               onChange={trackExpense}
             />
             <button onClick={addExpense}>➕</button>
-            <button>🗑️</button>      
+            <button onClick={clearCurrentExpense}>🗑️</button>      
           </form>
         </div>
         <table>
           <tbody>
             <tr>
+              <th>#</th>
               <th>description</th>
               <th>amount</th>
               <th>date</th>
