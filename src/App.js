@@ -1,60 +1,58 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
-  const [expenses, setExpenses] = React.useState([])
-  const [currentExpense, setCurrentExpense] = 
-    React.useState({
-            description: "",
-            amount: "",
-            date: ""
-          })
+  const [expenses, setExpenses] = React.useState([]);
+  const [currentExpense, setCurrentExpense] = React.useState({
+    description: "",
+    amount: "",
+    date: "",
+  });
 
-  function trackExpense(event){
-    switch (event.target.name){
-      case 'expense_description':
-        setCurrentExpense(prev => ({...prev,
-          description:event.target.value}));
+  function trackExpense(event) {
+    switch (event.target.name) {
+      case "expense_description":
+        setCurrentExpense((prev) => ({
+          ...prev,
+          description: event.target.value,
+        }));
         break;
-      case 'expense_amount':
-        setCurrentExpense(prev => ({...prev,
-          amount:event.target.value}))
+      case "expense_amount":
+        setCurrentExpense((prev) => ({ ...prev, amount: event.target.value }));
         break;
-      case 'expense_date':
-        setCurrentExpense(prev => ({...prev,
-          date:event.target.value}));
+      case "expense_date":
+        setCurrentExpense((prev) => ({ ...prev, date: event.target.value }));
         break;
-      default: 
+      default:
     }
   }
-  
-  function addExpense(event){
-    event.preventDefault()
-    setExpenses(prev => ([...prev,currentExpense]))
-    clearCurrentExpense(event)
+
+  function addExpense(event) {
+    event.preventDefault();
+    setExpenses((prev) => [...prev, currentExpense]);
+    clearCurrentExpense(event);
   }
 
-  function clearCurrentExpense(event){
-    event.preventDefault()
+  function clearCurrentExpense(event) {
+    event.preventDefault();
     setCurrentExpense({
       description: "",
       amount: "",
-      date: ""
-    })
+      date: "",
+    });
   }
 
-  function ListExpenses(){
-    return(
-      expenses.map(function(expense,index){ 
-        return (
+  function ListExpenses() {
+    return expenses.map(function (expense, index) {
+      return (
         <tr key={index + 1}>
           <td>{index + 1}</td>
           <td>{expense.description}</td>
           <td>{expense.amount}</td>
           <td>{expense.date}</td>
         </tr>
-      )})
-    )
+      );
+    });
   }
 
   return (
@@ -63,39 +61,39 @@ function App() {
         <h1>Expense Tracker</h1>
       </header>
       <main>
-        <div className='form-area'>
-          <div className='form-header'>
+        <div className="form-area">
+          <div className="form-header">
             <p>description</p>
             <p>amount</p>
             <p>date</p>
           </div>
           <form>
-            <input 
-              className='expense_description' 
-              name='expense_description' 
+            <input
+              className="expense_description"
+              name="expense_description"
               value={currentExpense.description}
               onChange={trackExpense}
               required={true}
             />
-            <input 
-              className='expense_amount' 
-              name='expense_amount' 
+            <input
+              className="expense_amount"
+              name="expense_amount"
               value={currentExpense.amount}
               onChange={trackExpense}
               required={true}
             />
-            <input 
-              className='expense_date' 
-              name='expense_date' 
-              type={'date'} 
+            <input
+              className="expense_date"
+              name="expense_date"
+              type={"date"}
               value={currentExpense.date}
               onChange={trackExpense}
               required={true}
             />
-            <div className='form-buttons'>
+            <div className="form-buttons">
               <button onClick={addExpense}>➕</button>
               <button onClick={clearCurrentExpense}>🗑️</button>
-            </div>     
+            </div>
           </form>
         </div>
         <table>
@@ -109,7 +107,6 @@ function App() {
             <ListExpenses />
           </tbody>
         </table>
-        
       </main>
     </div>
   );
