@@ -3,6 +3,36 @@ header{
   text-align: center;
 }
 
-.form-area{
+main{
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  margin: 0 auto;
+}
 
+.form-header,
+form,
+tr{
+  display: grid;
+  grid-template-columns: repeat(3,1fr) 150px;
+  gap: 10px;
+}
+
+table{
+  margin-top: 3em;
+}
+
+tr{
+  grid-template-columns: 20px repeat(3,1fr) 150px;
+  text-align: left;
+  margin-left: -30px;
+}
+
+.form-header p{
+  margin-right: 1em;
+  margin-bottom: 0;
+}
+
+.form-buttons{
+  grid-column: 4;
 }

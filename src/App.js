@@ -3,11 +3,12 @@ import './App.css';
 
 function App() {
   const [expenses, setExpenses] = React.useState([])
-  const [currentExpense, setCurrentExpense] = React.useState({
-                                                      description: "",
-                                                      amount: "",
-                                                      date: ""
-                                                    })
+  const [currentExpense, setCurrentExpense] = 
+    React.useState({
+            description: "",
+            amount: "",
+            date: ""
+          })
 
   function trackExpense(event){
     switch (event.target.name){
@@ -74,12 +75,14 @@ function App() {
               name='expense_description' 
               value={currentExpense.description}
               onChange={trackExpense}
+              required={true}
             />
             <input 
               className='expense_amount' 
               name='expense_amount' 
               value={currentExpense.amount}
               onChange={trackExpense}
+              required={true}
             />
             <input 
               className='expense_date' 
@@ -87,9 +90,12 @@ function App() {
               type={'date'} 
               value={currentExpense.date}
               onChange={trackExpense}
+              required={true}
             />
-            <button onClick={addExpense}>➕</button>
-            <button onClick={clearCurrentExpense}>🗑️</button>      
+            <div className='form-buttons'>
+              <button onClick={addExpense}>➕</button>
+              <button onClick={clearCurrentExpense}>🗑️</button>
+            </div>     
           </form>
         </div>
         <table>
