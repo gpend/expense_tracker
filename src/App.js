@@ -8,6 +8,11 @@ function App() {
     amount: "",
     date: "",
   });
+  const [inputErrors, setInputErrors] = React.useState({
+    description: false,
+    amount: false,
+    date: false,
+  });
 
   function trackExpense(event) {
     switch (event.target.name) {
@@ -29,6 +34,21 @@ function App() {
 
   function addExpense(event) {
     event.preventDefault();
+    // console.log(currentExpense)
+    let errors = false
+    if (currentExpense.amount === ""){
+      setInputErrors((prev)=>({...prev, amount:true}))
+      errors = true
+    }
+    if (currentExpense.description === ""){
+      setInputErrors((prev)=>({...prev, description:true}))
+      errors = true
+    }
+    if (currentExpense.date === ""){
+      setInputErrors((prev)=>({...prev, date:true}))
+      errors = true
+    }
+    if(errors){return}
     setExpenses((prev) => [...prev, currentExpense]);
     clearCurrentExpense(event);
   }
@@ -40,6 +60,11 @@ function App() {
       amount: "",
       date: "",
     });
+    setInputErrors({
+      description: false,
+      amount: false,
+      date: false,
+    })
   }
 
   function ListExpenses() {
@@ -63,9 +88,9 @@ function App() {
       <main>
         <div className="form-area">
           <div className="form-header">
-            <p>description</p>
-            <p>amount</p>
-            <p>date</p>
+            <p>description<span className="input-required">{inputErrors.description ? " Required!": ""}</span></p>
+            <p>amount<span className="input-required">{inputErrors.amount ? " Required!": ""}</span></p>
+            <p>date<span className="input-required">{inputErrors.date ? " Required!": ""}</span></p>
           </div>
           <form>
             <input
