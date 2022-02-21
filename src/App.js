@@ -67,6 +67,10 @@ function App() {
     })
   }
 
+  function deleteExpense(index) {
+    setExpenses(expenses.filter((item, i) => i !== index));
+  }
+
   function ListExpenses() {
     return expenses.map(function (expense, index) {
       return (
@@ -76,7 +80,7 @@ function App() {
           <td>{expense.amount}</td>
           <td>{expense.date}</td>
           <td>
-            <button onClick={clearCurrentExpense}>☓</button>
+            <button onClick={() => deleteExpense(index)}>☓</button>
           </td>
         </tr>
       );
