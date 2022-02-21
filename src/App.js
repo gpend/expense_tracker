@@ -14,6 +14,15 @@ function App() {
     date: false,
   });
 
+  React.useEffect(() => {
+    let oldExpenses = localStorage.getItem('expenses')
+    oldExpenses && setExpenses(JSON.parse(oldExpenses))
+  },[])
+
+  React.useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses))
+  }, [expenses])
+
   function trackExpense(event) {
     switch (event.target.name) {
       case "expense_description":
