@@ -75,6 +75,9 @@ function App() {
           <td>{expense.description}</td>
           <td>{expense.amount}</td>
           <td>{expense.date}</td>
+          <td>
+            <button onClick={clearCurrentExpense}>☓</button>
+          </td>
         </tr>
       );
     });
@@ -128,6 +131,7 @@ function App() {
               <th>description</th>
               <th>amount</th>
               <th>date</th>
+              <th></th>
             </tr>
             <ListExpenses />
           </tbody>
