@@ -35,20 +35,22 @@ function App() {
   function addExpense(event) {
     event.preventDefault();
     // console.log(currentExpense)
-    let errors = false
-    if (currentExpense.amount === ""){
-      setInputErrors((prev)=>({...prev, amount:true}))
-      errors = true
+    let errors = false;
+    if (currentExpense.amount === "") {
+      setInputErrors((prev) => ({ ...prev, amount: true }));
+      errors = true;
     }
-    if (currentExpense.description === ""){
-      setInputErrors((prev)=>({...prev, description:true}))
-      errors = true
+    if (currentExpense.description === "") {
+      setInputErrors((prev) => ({ ...prev, description: true }));
+      errors = true;
     }
-    if (currentExpense.date === ""){
-      setInputErrors((prev)=>({...prev, date:true}))
-      errors = true
+    if (currentExpense.date === "") {
+      setInputErrors((prev) => ({ ...prev, date: true }));
+      errors = true;
     }
-    if(errors){return}
+    if (errors) {
+      return;
+    }
     setExpenses((prev) => [...prev, currentExpense]);
     clearCurrentExpense(event);
   }
@@ -64,7 +66,7 @@ function App() {
       description: false,
       amount: false,
       date: false,
-    })
+    });
   }
 
   function deleteExpense(index) {
@@ -77,7 +79,7 @@ function App() {
         <tr key={index + 1}>
           <td>{index + 1}</td>
           <td>{expense.description}</td>
-          <td>{expense.amount}</td>
+          <td>${expense.amount}</td>
           <td>{expense.date}</td>
           <td>
             <button onClick={() => deleteExpense(index)}>☓</button>
@@ -95,9 +97,24 @@ function App() {
       <main>
         <div className="form-area">
           <div className="form-header">
-            <p>description<span className="input-required">{inputErrors.description ? " Required!": ""}</span></p>
-            <p>amount<span className="input-required">{inputErrors.amount ? " Required!": ""}</span></p>
-            <p>date<span className="input-required">{inputErrors.date ? " Required!": ""}</span></p>
+            <p>
+              description
+              <span className="input-required">
+                {inputErrors.description ? " Required!" : ""}
+              </span>
+            </p>
+            <p>
+              amount
+              <span className="input-required">
+                {inputErrors.amount ? " Required!" : ""}
+              </span>
+            </p>
+            <p>
+              date
+              <span className="input-required">
+                {inputErrors.date ? " Required!" : ""}
+              </span>
+            </p>
           </div>
           <form>
             <input
@@ -107,13 +124,15 @@ function App() {
               onChange={trackExpense}
               required={true}
             />
-            <input
-              className="expense_amount"
-              name="expense_amount"
-              value={currentExpense.amount}
-              onChange={trackExpense}
-              required={true}
-            />
+            <label for="expense_amount" id="expense_amount-label">
+              <input
+                className="expense_amount"
+                name="expense_amount"
+                value={currentExpense.amount}
+                onChange={trackExpense}
+                required={true}
+              />
+            </label>
             <input
               className="expense_date"
               name="expense_date"

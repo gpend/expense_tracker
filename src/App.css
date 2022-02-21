@@ -1,9 +1,9 @@
-header{
+header {
   /* height: 3em; */
   text-align: center;
 }
 
-main{
+main {
   display: flex;
   flex-direction: column;
   width: 80vw;
@@ -12,32 +12,49 @@ main{
 
 .form-header,
 form,
-tr{
+tr {
   display: grid;
-  grid-template-columns: repeat(3,1fr) 150px;
+  grid-template-columns: repeat(3, 1fr) 150px;
   gap: 10px;
 }
 
-.input-required{
+#expense_amount-label {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#expense_amount-label::after {
+  content: "$";
+  position: absolute;
+  left: 5px;
+  z-index: 100;
+}
+
+input.expense_amount{
+  padding-left: 13px;
+}
+
+.input-required {
   font-weight: bold;
   color: red;
 }
 
-table{
+table {
   margin-top: 3em;
 }
 
-tr{
-  grid-template-columns: 20px repeat(3,1fr) 150px;
+tr {
+  grid-template-columns: 20px repeat(3, 1fr) 150px;
   text-align: left;
   margin-left: -30px;
 }
 
-.form-header p{
+.form-header p {
   margin-right: 1em;
   margin-bottom: 0;
 }
 
-.form-buttons{
+.form-buttons {
   grid-column: 4;
 }
